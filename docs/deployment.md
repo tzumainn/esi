@@ -110,6 +110,16 @@ If you are using ansible networking to configure the switch, the following Neutr
 "get_network:provider:physical_network": "rule:admin_or_owner or rule:shared"
 ```
 
+In addition, allowing network owners to view their segmentation_id is useful if they will be creating trunk ports:
+
+```
+# Get ``provider:segmentation_id`` attribute of a network
+# GET  /networks
+# GET  /networks/{id}
+#"get_network:provider:segmentation_id": "rule:admin_only"
+"get_network:provider:segmentation_id": "rule:admin_or_owner or rule:shared"
+```
+
 ### Ansible Networking and Cisco Nexus Switches
 
 If you are using a Cisco Nexus switch, then you'll need an updated Ansible playbook for configuring trunk ports. It can be found at https://github.com/ansible-network/network-runner/blob/devel/etc/ansible/roles/network-runner/providers/nxos/conf_trunk_port.yaml.
